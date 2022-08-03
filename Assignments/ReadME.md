@@ -10,4 +10,4 @@ Collection of Programs assigned in class to be completed
 | :------------: | -------------------------- | -------- | ----------- |
 | Program 1 | [GraphViz Dot File](https://github.com/Byron-Dowling/5323-Graph-Theory/tree/main/Assignments/Program%201)                 |    Go     |  Complete   |
 | Program 2 | [Minimum Spanning Tree](https://github.com/Byron-Dowling/5323-Graph-Theory/tree/main/Assignments/Program%202)                 |    C++     |  Complete   |
-| Program  | [Dijkstras](https://github.com/Byron-Dowling/5323-Graph-Theory/tree/main/Assignments/Program%203)                 |    Python     |  Complete   |
+| Program 3 | [Dijkstras](https://github.com/Byron-Dowling/5323-Graph-Theory/tree/main/Assignments/Program%203)                 |    Python     |  Complete   |
