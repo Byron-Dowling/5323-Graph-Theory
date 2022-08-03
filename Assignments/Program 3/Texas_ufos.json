@@ -1,0 +1,604 @@
+[
+    {
+        "ID": 0,
+        "City": "Austin",
+        "State": "TX",
+        "Lat": "30.2711286",
+        "Long": "-97.7436994"
+    },
+    {
+        "ID": 1,
+        "City": "Dallas",
+        "State": "TX",
+        "Lat": "32.7762719",
+        "Long": "-96.7968558"
+    },
+    {
+        "ID": 2,
+        "City": "Fort Worth",
+        "State": "TX",
+        "Lat": "32.753177",
+        "Long": "-97.3327458"
+    },
+    {
+        "ID": 3,
+        "City": "Houston",
+        "State": "TX",
+        "Lat": "29.675779",
+        "Long": "-95.40215851"
+    },
+    {
+        "ID": 4,
+        "City": "Richardson",
+        "State": "TX",
+        "Lat": "32.9481789",
+        "Long": "-96.7297205"
+    },
+    {
+        "ID": 5,
+        "City": "Pearland",
+        "State": "TX",
+        "Lat": "29.5639758",
+        "Long": "-95.2864298"
+    },
+    {
+        "ID": 6,
+        "City": "Lake Jackson",
+        "State": "TX",
+        "Lat": "29.0338575",
+        "Long": "-95.4343858"
+    },
+    {
+        "ID": 7,
+        "City": "Fayetteville",
+        "State": "TX",
+        "Lat": "29.9057817",
+        "Long": "-96.6727527"
+    },
+    {
+        "ID": 8,
+        "City": "Corpus Christi",
+        "State": "TX",
+        "Lat": "27.8002542",
+        "Long": "-97.3955743"
+    },
+    {
+        "ID": 9,
+        "City": "McKinney",
+        "State": "TX",
+        "Lat": "33.1976496",
+        "Long": "-96.6154470"
+    },
+    {
+        "ID": 10,
+        "City": "Irving",
+        "State": "TX",
+        "Lat": "32.8629195",
+        "Long": "-96.97917017"
+    },
+    {
+        "ID": 11,
+        "City": "Euless",
+        "State": "TX",
+        "Lat": "32.8465405",
+        "Long": "-97.06673619"
+    },
+    {
+        "ID": 12,
+        "City": "Dripping Springs",
+        "State": "TX",
+        "Lat": "30.1902067",
+        "Long": "-98.086678"
+    },
+    {
+        "ID": 13,
+        "City": "Alvin",
+        "State": "TX",
+        "Lat": "29.4238472",
+        "Long": "-95.2441008"
+    },
+    {
+        "ID": 14,
+        "City": "Robstown",
+        "State": "TX",
+        "Lat": "27.7903032",
+        "Long": "-97.6688842"
+    },
+    {
+        "ID": 15,
+        "City": "Seguin",
+        "State": "TX",
+        "Lat": "29.5688411",
+        "Long": "-97.9647268"
+    },
+    {
+        "ID": 16,
+        "City": "Burnet",
+        "State": "TX",
+        "Lat": "30.7573109",
+        "Long": "-98.2289006"
+    },
+    {
+        "ID": 17,
+        "City": "Alvord",
+        "State": "TX",
+        "Lat": "33.353949",
+        "Long": "-97.69372387"
+    },
+    {
+        "ID": 18,
+        "City": "Krum",
+        "State": "TX",
+        "Lat": "33.2618362",
+        "Long": "-97.2374667"
+    },
+    {
+        "ID": 19,
+        "City": "Carrollton",
+        "State": "TX",
+        "Lat": "32.9537349",
+        "Long": "-96.8902815"
+    },
+    {
+        "ID": 20,
+        "City": "Copperas Cove",
+        "State": "TX",
+        "Lat": "31.124062",
+        "Long": "-97.9030784"
+    },
+    {
+        "ID": 21,
+        "City": "Mansfield",
+        "State": "TX",
+        "Lat": "32.5631924",
+        "Long": "-97.1416767"
+    },
+    {
+        "ID": 22,
+        "City": "San Antonio",
+        "State": "TX",
+        "Lat": "29.4246002",
+        "Long": "-98.4951404"
+    },
+    {
+        "ID": 23,
+        "City": "Granbury",
+        "State": "TX",
+        "Lat": "32.4420826",
+        "Long": "-97.7941966"
+    },
+    {
+        "ID": 24,
+        "City": "Kerrville",
+        "State": "TX",
+        "Lat": "30.0474332",
+        "Long": "-99.1403188"
+    },
+    {
+        "ID": 25,
+        "City": "Murphy",
+        "State": "TX",
+        "Lat": "33.0151208",
+        "Long": "-96.6130477"
+    },
+    {
+        "ID": 26,
+        "City": "Plano",
+        "State": "TX",
+        "Lat": "33.0136764",
+        "Long": "-96.6925095"
+    },
+    {
+        "ID": 27,
+        "City": "Millsap",
+        "State": "TX",
+        "Lat": "32.7481864",
+        "Long": "-98.0092092"
+    },
+    {
+        "ID": 28,
+        "City": "Amarillo",
+        "State": "TX",
+        "Lat": "35.2072185",
+        "Long": "-101.8338245"
+    },
+    {
+        "ID": 29,
+        "City": "Dayton",
+        "State": "TX",
+        "Lat": "30.0466051",
+        "Long": "-94.8852025"
+    },
+    {
+        "ID": 30,
+        "City": "Alice",
+        "State": "TX",
+        "Lat": "27.7522487",
+        "Long": "-98.0697248"
+    },
+    {
+        "ID": 31,
+        "City": "Springtown",
+        "State": "TX",
+        "Lat": "31.802096",
+        "Long": "-98.1897588"
+    },
+    {
+        "ID": 32,
+        "City": "Frisco",
+        "State": "TX",
+        "Lat": "33.1506744",
+        "Long": "-96.8236115"
+    },
+    {
+        "ID": 33,
+        "City": "Lakehills",
+        "State": "TX",
+        "Lat": "29.584395",
+        "Long": "-98.9489192"
+    },
+    {
+        "ID": 34,
+        "City": "San Marcos",
+        "State": "TX",
+        "Lat": "29.8826436",
+        "Long": "-97.9405827"
+    },
+    {
+        "ID": 35,
+        "City": "Pharr",
+        "State": "TX",
+        "Lat": "26.1947962",
+        "Long": "-98.1836215"
+    },
+    {
+        "ID": 36,
+        "City": "Moore",
+        "State": "TX",
+        "Lat": "35.8156121",
+        "Long": "-101.9104354"
+    },
+    {
+        "ID": 37,
+        "City": "Atascosa",
+        "State": "TX",
+        "Lat": "28.8554434",
+        "Long": "-98.5316313"
+    },
+    {
+        "ID": 38,
+        "City": "Jamaica Beach",
+        "State": "TX",
+        "Lat": "29.1831247",
+        "Long": "-94.9729395"
+    },
+    {
+        "ID": 39,
+        "City": "Pflugerville",
+        "State": "TX",
+        "Lat": "30.4393696",
+        "Long": "-97.6200042"
+    },
+    {
+        "ID": 40,
+        "City": "Angleton",
+        "State": "TX",
+        "Lat": "29.16941",
+        "Long": "-95.4318846"
+    },
+    {
+        "ID": 41,
+        "City": "Spring",
+        "State": "TX",
+        "Lat": "30.0798826",
+        "Long": "-95.4172548"
+    },
+    {
+        "ID": 42,
+        "City": "Cedar Park",
+        "State": "TX",
+        "Lat": "30.5217116",
+        "Long": "-97.8278329"
+    },
+    {
+        "ID": 43,
+        "City": "Baytown",
+        "State": "TX",
+        "Lat": "29.7355047",
+        "Long": "-94.9774273"
+    },
+    {
+        "ID": 44,
+        "City": "Mauriceville",
+        "State": "TX",
+        "Lat": "30.2035419",
+        "Long": "-93.8662818"
+    },
+    {
+        "ID": 45,
+        "City": "Kemp",
+        "State": "TX",
+        "Lat": "32.4426403",
+        "Long": "-96.229977"
+    },
+    {
+        "ID": 46,
+        "City": "Del Valle",
+        "State": "TX",
+        "Lat": "30.327985",
+        "Long": "-97.6191693"
+    },
+    {
+        "ID": 47,
+        "City": "Round Rock",
+        "State": "TX",
+        "Lat": "30.508235",
+        "Long": "-97.6788933"
+    },
+    {
+        "ID": 48,
+        "City": "College Station",
+        "State": "TX",
+        "Lat": "30.6253463",
+        "Long": "-96.3271537"
+    },
+    {
+        "ID": 49,
+        "City": "Hurst",
+        "State": "TX",
+        "Lat": "32.8234621",
+        "Long": "-97.1705677"
+    },
+    {
+        "ID": 50,
+        "City": "New Braunfels",
+        "State": "TX",
+        "Lat": "29.7028266",
+        "Long": "-98.1257347"
+    },
+    {
+        "ID": 51,
+        "City": "Texas City",
+        "State": "TX",
+        "Lat": "29.383845",
+        "Long": "-94.9027001"
+    },
+    {
+        "ID": 52,
+        "City": "Denton",
+        "State": "TX",
+        "Lat": "33.14582252",
+        "Long": "-97.10196359"
+    },
+    {
+        "ID": 53,
+        "City": "El Paso",
+        "State": "TX",
+        "Lat": "31.8111305",
+        "Long": "-106.5013493"
+    },
+    {
+        "ID": 54,
+        "City": "Friendswood",
+        "State": "TX",
+        "Lat": "29.5293998",
+        "Long": "-95.2010446"
+    },
+    {
+        "ID": 55,
+        "City": "Katy",
+        "State": "TX",
+        "Lat": "29.7857853",
+        "Long": "-95.8243955"
+    },
+    {
+        "ID": 56,
+        "City": "Cypress",
+        "State": "TX",
+        "Lat": "29.9691116",
+        "Long": "-95.6971685"
+    },
+    {
+        "ID": 57,
+        "City": "Garland",
+        "State": "TX",
+        "Lat": "32.912624",
+        "Long": "-96.6388832"
+    },
+    {
+        "ID": 58,
+        "City": "Abilene",
+        "State": "TX",
+        "Lat": "32.4464534",
+        "Long": "-99.7333477"
+    },
+    {
+        "ID": 59,
+        "City": "Woodville",
+        "State": "TX",
+        "Lat": "30.7752011",
+        "Long": "-94.4154757"
+    },
+    {
+        "ID": 60,
+        "City": "Big Spring",
+        "State": "TX",
+        "Lat": "32.250398",
+        "Long": "-101.4787355"
+    },
+    {
+        "ID": 61,
+        "City": "Kingsville",
+        "State": "TX",
+        "Lat": "27.5158689",
+        "Long": "-97.8561089"
+    },
+    {
+        "ID": 62,
+        "City": "Haltom City",
+        "State": "TX",
+        "Lat": "32.7995738",
+        "Long": "-97.2691816"
+    },
+    {
+        "ID": 63,
+        "City": "Jarrell",
+        "State": "TX",
+        "Lat": "30.8249094",
+        "Long": "-97.6044539"
+    },
+    {
+        "ID": 64,
+        "City": "Horizon City",
+        "State": "TX",
+        "Lat": "31.6926121",
+        "Long": "-106.2074792"
+    },
+    {
+        "ID": 65,
+        "City": "Leander",
+        "State": "TX",
+        "Lat": "30.5586046",
+        "Long": "-97.8444363"
+    },
+    {
+        "ID": 66,
+        "City": "Boerne",
+        "State": "TX",
+        "Lat": "29.7946641",
+        "Long": "-98.7319702"
+    },
+    {
+        "ID": 67,
+        "City": "Rowlett",
+        "State": "TX",
+        "Lat": "32.9029017",
+        "Long": "-96.5638799"
+    },
+    {
+        "ID": 68,
+        "City": "Navasota",
+        "State": "TX",
+        "Lat": "30.3874135",
+        "Long": "-96.0875065"
+    },
+    {
+        "ID": 69,
+        "City": "Arlington",
+        "State": "TX",
+        "Lat": "32.701939",
+        "Long": "-97.10571484"
+    },
+    {
+        "ID": 70,
+        "City": "Lubbock",
+        "State": "TX",
+        "Lat": "33.5778631",
+        "Long": "-101.8551664"
+    },
+    {
+        "ID": 71,
+        "City": "Lorenzo",
+        "State": "TX",
+        "Lat": "33.6706408",
+        "Long": "-101.535161"
+    },
+    {
+        "ID": 72,
+        "City": "Wylie",
+        "State": "TX",
+        "Lat": "33.0151201",
+        "Long": "-96.5388788"
+    },
+    {
+        "ID": 73,
+        "City": "Wichita Falls",
+        "State": "TX",
+        "Lat": "33.9137085",
+        "Long": "-98.4933872"
+    },
+    {
+        "ID": 74,
+        "City": "Los Fresnos",
+        "State": "TX",
+        "Lat": "26.0717438",
+        "Long": "-97.4763732"
+    },
+    {
+        "ID": 75,
+        "City": "Paris",
+        "State": "TX",
+        "Lat": "33.6617962",
+        "Long": "-95.5555129"
+    },
+    {
+        "ID": 76,
+        "City": "La Porte",
+        "State": "TX",
+        "Lat": "29.6657838",
+        "Long": "-95.0193728"
+    },
+    {
+        "ID": 77,
+        "City": "Laredo",
+        "State": "TX",
+        "Lat": "27.5060991",
+        "Long": "-99.5088978"
+    },
+    {
+        "ID": 78,
+        "City": "Stanton",
+        "State": "TX",
+        "Lat": "32.1292891",
+        "Long": "-101.7884641"
+    },
+    {
+        "ID": 79,
+        "City": "Dickinson",
+        "State": "TX",
+        "Lat": "29.4607876",
+        "Long": "-95.0513172"
+    },
+    {
+        "ID": 80,
+        "City": "Huntington",
+        "State": "TX",
+        "Lat": "31.2776873",
+        "Long": "-94.5765939"
+    },
+    {
+        "ID": 81,
+        "City": "Mineola",
+        "State": "TX",
+        "Lat": "32.6631885",
+        "Long": "-95.4882895"
+    },
+    {
+        "ID": 82,
+        "City": "Road",
+        "State": "TX",
+        "Lat": "30.7241128",
+        "Long": "-95.5298808"
+    },
+    {
+        "ID": 83,
+        "City": "Pasadena",
+        "State": "TX",
+        "Lat": "29.6910625",
+        "Long": "-95.2091005"
+    },
+    {
+        "ID": 84,
+        "City": "Odessa",
+        "State": "TX",
+        "Lat": "31.8457149",
+        "Long": "-102.3676869"
+    },
+    {
+        "ID": 85,
+        "City": "Goliad",
+        "State": "TX",
+        "Lat": "28.6683252",
+        "Long": "-97.3883264"
+    }
+]

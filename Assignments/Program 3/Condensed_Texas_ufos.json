@@ -1,0 +1,100 @@
+[
+    {
+        "ID": 0,
+        "City": "Austin",
+        "State": "TX",
+        "Lat": "30.2711286",
+        "Long": "-97.7436994"
+    },
+    {
+        "ID": 1,
+        "City": "Dallas",
+        "State": "TX",
+        "Lat": "32.7762719",
+        "Long": "-96.7968558"
+    },
+    {
+        "ID": 2,
+        "City": "Fort Worth",
+        "State": "TX",
+        "Lat": "32.753177",
+        "Long": "-97.3327458"
+    },
+    {
+        "ID": 3,
+        "City": "Houston",
+        "State": "TX",
+        "Lat": "29.675779",
+        "Long": "-95.40215851"
+    },
+    {
+        "ID": 4,
+        "City": "Corpus Christi",
+        "State": "TX",
+        "Lat": "27.8002542",
+        "Long": "-97.3955743"
+    },
+    {
+        "ID": 5,
+        "City": "Amarillo",
+        "State": "TX",
+        "Lat": "35.2072185",
+        "Long": "-101.8338245"
+    },
+    {
+        "ID": 6,
+        "City": "San Marcos",
+        "State": "TX",
+        "Lat": "29.8826436",
+        "Long": "-97.9405827"
+    },
+    {
+        "ID": 7,
+        "City": "Wichita Falls",
+        "State": "TX",
+        "Lat": "33.9137085",
+        "Long": "-98.4933872"
+    },
+    {
+        "ID": 8,
+        "City": "Baytown",
+        "State": "TX",
+        "Lat": "29.7355047",
+        "Long": "-94.9774273"
+    },
+    {
+        "ID": 9,
+        "City": "College Station",
+        "State": "TX",
+        "Lat": "30.6253463",
+        "Long": "-96.3271537"
+    },
+    {
+        "ID": 10,
+        "City": "El Paso",
+        "State": "TX",
+        "Lat": "31.8111305",
+        "Long": "-106.5013493"
+    },
+    {
+        "ID": 11,
+        "City": "Abilene",
+        "State": "TX",
+        "Lat": "32.4464534",
+        "Long": "-99.7333477"
+    },
+    {
+        "ID": 12,
+        "City": "Big Spring",
+        "State": "TX",
+        "Lat": "32.250398",
+        "Long": "-101.4787355"
+    },
+    {
+        "ID": 13,
+        "City": "Laredo",
+        "State": "TX",
+        "Lat": "27.5060991",
+        "Long": "-99.5088978"
+    }
+]
