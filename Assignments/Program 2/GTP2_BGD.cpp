@@ -22,6 +22,8 @@
         since we're using object pointers, it is more memory efficient than creating copies of
         each object.
 
+
+        ***Project is modified to use Smart Pointers i.e shared_ptr***
 */
 
 #include<iostream>
@@ -31,6 +33,7 @@
 #include<map>
 #include<string>
 #include<algorithm>
+#include<memory>
 
 using namespace std;
 
@@ -41,39 +44,36 @@ using namespace std;
 struct Edge;
 struct Graph_Node;
 
-typedef vector<vector<int>> AdjacencyMatrix;   // Typedef for a vector of vector ints for the Adjacency Matrix
-typedef vector<Edge*> AdjacencyList;           // Typedef for a vecotr of Edge pointers for the Adjacency List
-typedef pair<char, char> EdgePair;             // Typedef for a pair of chars for looking up edges
-
+typedef vector<vector<int>> AdjacencyMatrix;    // Typedef for a vector of vector ints for the Adjacency Matrix
+typedef vector<shared_ptr<Edge>> AdjacencyList; // Typedef for a vector of Edge pointers for the Adjacency List
+typedef pair<char, char> EdgePair;              // Typedef for a pair of chars for looking up edges
 
 /*
- __    __                  __
-|  \  |  \                |  \
-| $$\ | $$  ______    ____| $$  ______
-| $$$\| $$ /      \  /      $$ /      \
-| $$$$\ $$|  $$$$$$\|  $$$$$$$|  $$$$$$\
-| $$\$$ $$| $$  | $$| $$  | $$| $$    $$
-| $$ \$$$$| $$__/ $$| $$__| $$| $$$$$$$$
-| $$  \$$$ \$$    $$ \$$    $$ \$$     \
- \$$   \$$  \$$$$$$   \$$$$$$$  \$$$$$$$
+ 
+    ███╗   ██╗ ██████╗ ██████╗ ███████╗
+    ████╗  ██║██╔═══██╗██╔══██╗██╔════╝
+    ██╔██╗ ██║██║   ██║██║  ██║█████╗  
+    ██║╚██╗██║██║   ██║██║  ██║██╔══╝  
+    ██║ ╚████║╚██████╔╝██████╔╝███████╗
+    ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝
 
     Description:
 
-		This struct is used to represent a Graph Node or vertex of the graph that we
+	This struct is used to represent a Graph Node or vertex of the graph that we
         are building. The object will have an ID, a visited status used in traversals
         and an Adjacency list that is a list of edge pairs that the node has.
 
 
 	Public Methods:
-		- Graph_Node() - Default Constructor
+	- Graph_Node() - Default Constructor
         - Graph_Node(int n) - Overloaded Constructor
 
 
 	Private/Protected Methods:
-		- None
+	- None
 
 	Usage:
-		- This class creates a graph node object
+	- This class creates a graph node object
 
 */
 
@@ -98,22 +98,17 @@ struct Graph_Node
 
 
 /*
- ________       __
-|        \     |  \
-| $$$$$$$$ ____| $$  ______    ______
-| $$__    /      $$ /      \  /      \
-| $$  \  |  $$$$$$$|  $$$$$$\|  $$$$$$\
-| $$$$$  | $$  | $$| $$  | $$| $$    $$
-| $$_____| $$__| $$| $$__| $$| $$$$$$$$
-| $$     \\$$    $$ \$$    $$ \$$     \
- \$$$$$$$$ \$$$$$$$ _\$$$$$$$  \$$$$$$$
-                   |  \__| $$
-                    \$$    $$
-                     \$$$$$$
+ 
+    ███████╗██████╗  ██████╗ ███████╗
+    ██╔════╝██╔══██╗██╔════╝ ██╔════╝
+    █████╗  ██║  ██║██║  ███╗█████╗  
+    ██╔══╝  ██║  ██║██║   ██║██╔══╝  
+    ███████╗██████╔╝╚██████╔╝███████╗
+    ╚══════╝╚═════╝  ╚═════╝ ╚══════╝
 
     Description:
 
-		This struct is used to represent a Graph edge that represents the weighted
+	This struct is used to represent a Graph edge that represents the weighted
         path between two graph vertices. It has both the start and end Graph Node
         as well as the weight of the edge and a boolean to indicate if the edge is
         included in Kruskals MST.
@@ -124,20 +119,20 @@ struct Graph_Node
 
 
 	Private/Protected Methods:
-		- None
+	- None
 
 	Usage:
-		- This class creates a graph edge object
+	- This class creates a graph edge object
 */
 
 struct Edge
 {
-    Graph_Node* Start;
-    Graph_Node* End;
+    shared_ptr<Graph_Node> Start;
+    shared_ptr<Graph_Node> End;
     int Weight;
     bool K;
 
-    Edge(Graph_Node* S, Graph_Node* E, int w)
+    Edge(shared_ptr<Graph_Node> S, shared_ptr<Graph_Node> E, int w)
     {
         Start = S;
         End = E;
@@ -148,26 +143,20 @@ struct Edge
 
 
 /*
- __     __                        __
-|  \   |  \                      |  \
-| $$   | $$  ______    _______  _| $$_     ______    ______
-| $$   | $$ /      \  /       \|   $$ \   /      \  /      \
- \$$\ /  $$|  $$$$$$\|  $$$$$$$ \$$$$$$  |  $$$$$$\|  $$$$$$\
-  \$$\  $$ | $$    $$| $$        | $$ __ | $$  | $$| $$   \$$
-   \$$ $$  | $$$$$$$$| $$_____   | $$|  \| $$__/ $$| $$
-    \$$$    \$$     \ \$$     \   \$$  $$ \$$    $$| $$
-     \$      \$$$$$$$  \$$$$$$$    \$$$$   \$$$$$$  \$$
-
-  ______                        __
- /      \                      |  \
-|  $$$$$$\  ______    ______  _| $$_
-| $$___\$$ /      \  /      \|   $$ \
- \$$    \ |  $$$$$$\|  $$$$$$\\$$$$$$
- _\$$$$$$\| $$  | $$| $$   \$$ | $$ __
-|  \__| $$| $$__/ $$| $$       | $$|  \
- \$$    $$ \$$    $$| $$        \$$  $$
-  \$$$$$$   \$$$$$$  \$$         \$$$$
-
+ 
+    ██╗   ██╗███████╗ ██████╗████████╗ ██████╗ ██████╗ 
+    ██║   ██║██╔════╝██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗
+    ██║   ██║█████╗  ██║        ██║   ██║   ██║██████╔╝
+    ╚██╗ ██╔╝██╔══╝  ██║        ██║   ██║   ██║██╔══██╗
+     ╚████╔╝ ███████╗╚██████╗   ██║   ╚██████╔╝██║  ██║
+      ╚═══╝  ╚══════╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+                                                        
+    ███████╗ ██████╗ ██████╗ ████████╗                 
+    ██╔════╝██╔═══██╗██╔══██╗╚══██╔══╝                 
+    ███████╗██║   ██║██████╔╝   ██║                    
+    ╚════██║██║   ██║██╔══██╗   ██║                    
+    ███████║╚██████╔╝██║  ██║   ██║                    
+    ╚══════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝                    
 
     Public Function bool: Compare
 
@@ -193,7 +182,7 @@ struct Edge
 
 */
 
-bool Compare(const Edge* LHS, const Edge* RHS)
+bool Compare(const shared_ptr<Edge> LHS, const shared_ptr<Edge> RHS)
 {
   if (LHS->Weight != RHS->Weight)
   {
@@ -205,24 +194,18 @@ bool Compare(const Edge* LHS, const Edge* RHS)
 }
 
 
-
 /*
-  ______                                __
- /      \                              |  \
-|  $$$$$$\  ______   ______    ______  | $$____
-| $$ __\$$ /      \ |      \  /      \ | $$    \
-| $$|    \|  $$$$$$\ \$$$$$$\|  $$$$$$\| $$$$$$$\
-| $$ \$$$$| $$   \$$/      $$| $$  | $$| $$  | $$
-| $$__| $$| $$     |  $$$$$$$| $$__/ $$| $$  | $$
- \$$    $$| $$      \$$    $$| $$    $$| $$  | $$
-  \$$$$$$  \$$       \$$$$$$$| $$$$$$$  \$$   \$$
-                             | $$
-                             | $$
-                              \$$
+ 
+     ██████╗ ██████╗  █████╗ ██████╗ ██╗  ██╗
+    ██╔════╝ ██╔══██╗██╔══██╗██╔══██╗██║  ██║
+    ██║  ███╗██████╔╝███████║██████╔╝███████║
+    ██║   ██║██╔══██╗██╔══██║██╔═══╝ ██╔══██║
+    ╚██████╔╝██║  ██║██║  ██║██║     ██║  ██║
+     ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝
 
 	Description:
 
-		This class is the main driver for the program. It builds the graph by receiving an adjacency
+	This class is the main driver for the program. It builds the graph by receiving an adjacency
         matrix and creating Maps of Vertices and Edges. The maps will offer faster lookup times than
         traversing the containers that they will be stored in such as a vector or deque.
 
@@ -232,7 +215,7 @@ bool Compare(const Edge* LHS, const Edge* RHS)
 
 
 	Public Methods:
-		- Graph() - Default Constructor
+	- Graph() - Default Constructor
         - void LoadMatrix(ifstream& input)
         - void PrintMatrix()
         - void PrintMap()
@@ -244,10 +227,10 @@ bool Compare(const Edge* LHS, const Edge* RHS)
 
 
 	Private/Protected Methods:
-		- None
+	- None
 
 	Usage:
-		- This class creates an object that determines the blob count for a 2D Matrix
+	- This class creates a Graph with a Minimum Spanning Tree
 
 */
 
@@ -256,11 +239,11 @@ class Graph
     protected:
 
         AdjacencyMatrix AM;
-        map<char, Graph_Node*> Vertices;
-        map<EdgePair, Edge*> Edges;
-        vector<Graph_Node*> Prims;
-        vector<Edge*> Kruskals;
-        deque<Edge*> PriorityQ;
+        map<char, shared_ptr<Graph_Node>> Vertices;
+        map<EdgePair, shared_ptr<Edge>> Edges;
+        vector<shared_ptr<Graph_Node>> Prims;
+        vector<shared_ptr<Edge>> Kruskals;
+        deque<shared_ptr<Edge>> PriorityQ;
         bool Symmetric;
         ofstream out;
 
@@ -279,10 +262,7 @@ class Graph
         void MakeGraphVizFile();
         void SortWeights();
         void ResetVisitStatus();
-        int DijkstrasShortestPath(Graph_Node* Start, Graph_Node* End);      // Not implemented yet
         void MinimumSpanningTree_Prims();
-        vector<Graph_Node*> DepthFirstSearch();                             // Not implemented yet
-        vector<Graph_Node*> BreadthFirstSearch();                           // Not implemented yet
 };
 
 
@@ -300,37 +280,27 @@ void Graph::ResetVisitStatus()
 
 
 /*
- __       __  __            __
-|  \     /  \|  \          |  \
-| $$\   /  $$ \$$ _______   \$$ ______ ____   __    __  ______ ____
-| $$$\ /  $$$|  \|       \ |  \|      \    \ |  \  |  \|      \    \
-| $$$$\  $$$$| $$| $$$$$$$\| $$| $$$$$$\$$$$\| $$  | $$| $$$$$$\$$$$\
-| $$\$$ $$ $$| $$| $$  | $$| $$| $$ | $$ | $$| $$  | $$| $$ | $$ | $$
-| $$ \$$$| $$| $$| $$  | $$| $$| $$ | $$ | $$| $$__/ $$| $$ | $$ | $$
-| $$  \$ | $$| $$| $$  | $$| $$| $$ | $$ | $$ \$$    $$| $$ | $$ | $$
- \$$      \$$ \$$ \$$   \$$ \$$ \$$  \$$  \$$  \$$$$$$  \$$  \$$  \$$
-  ______                                           __
- /      \                                         |  \
-|  $$$$$$\  ______    ______   _______   _______   \$$ _______    ______
-| $$___\$$ /      \  |      \ |       \ |       \ |  \|       \  /      \
- \$$    \ |  $$$$$$\  \$$$$$$\| $$$$$$$\| $$$$$$$\| $$| $$$$$$$\|  $$$$$$\
- _\$$$$$$\| $$  | $$ /      $$| $$  | $$| $$  | $$| $$| $$  | $$| $$  | $$
-|  \__| $$| $$__/ $$|  $$$$$$$| $$  | $$| $$  | $$| $$| $$  | $$| $$__| $$
- \$$    $$| $$    $$ \$$    $$| $$  | $$| $$  | $$| $$| $$  | $$ \$$    $$
-  \$$$$$$ | $$$$$$$   \$$$$$$$ \$$   \$$ \$$   \$$ \$$ \$$   \$$ _\$$$$$$$
-          | $$                                                  |  \__| $$
-          | $$                                                   \$$    $$
-           \$$                                                    \$$$$$$
- ________
-|        \
- \$$$$$$$$______    ______    ______
-   | $$  /      \  /      \  /      \
-   | $$ |  $$$$$$\|  $$$$$$\|  $$$$$$\
-   | $$ | $$   \$$| $$    $$| $$    $$
-   | $$ | $$      | $$$$$$$$| $$$$$$$$
-   | $$ | $$       \$$     \ \$$     \
-    \$$  \$$        \$$$$$$$  \$$$$$$$
-
+ 
+    ███╗   ███╗██╗███╗   ██╗██╗███╗   ███╗██╗   ██╗███╗   ███╗        
+    ████╗ ████║██║████╗  ██║██║████╗ ████║██║   ██║████╗ ████║        
+    ██╔████╔██║██║██╔██╗ ██║██║██╔████╔██║██║   ██║██╔████╔██║        
+    ██║╚██╔╝██║██║██║╚██╗██║██║██║╚██╔╝██║██║   ██║██║╚██╔╝██║        
+    ██║ ╚═╝ ██║██║██║ ╚████║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚═╝ ██║        
+    ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝     ╚═╝        
+                                                                    
+    ███████╗██████╗  █████╗ ███╗   ██╗███╗   ██╗██╗███╗   ██╗ ██████╗ 
+    ██╔════╝██╔══██╗██╔══██╗████╗  ██║████╗  ██║██║████╗  ██║██╔════╝ 
+    ███████╗██████╔╝███████║██╔██╗ ██║██╔██╗ ██║██║██╔██╗ ██║██║  ███╗
+    ╚════██║██╔═══╝ ██╔══██║██║╚██╗██║██║╚██╗██║██║██║╚██╗██║██║   ██║
+    ███████║██║     ██║  ██║██║ ╚████║██║ ╚████║██║██║ ╚████║╚██████╔╝
+    ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+                                                                    
+     ████████╗██████╗ ███████╗███████╗                                 
+     ╚══██╔══╝██╔══██╗██╔════╝██╔════╝                                 
+        ██║   ██████╔╝█████╗  █████╗                                   
+        ██║   ██╔══██╗██╔══╝  ██╔══╝                                   
+        ██║   ██║  ██║███████╗███████╗                                 
+        ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝                                 
 
     Public Method void: MinimumSpanningTree_Prims
 
@@ -365,7 +335,7 @@ void Graph::ResetVisitStatus()
 
 void Graph::MinimumSpanningTree_Prims()
 {
-    Graph_Node* Current = Vertices['A'];
+    auto Current = Vertices['A'];
 
     Prims.push_back(Current);
     Current->Visited = true;
@@ -388,7 +358,7 @@ void Graph::MinimumSpanningTree_Prims()
     {
         cout << "Queue Size: " << PriorityQ.size() << "\n";
 
-        Graph_Node* Current = Vertices[PriorityQ.front()->End->ID];
+        auto Current = Vertices[PriorityQ.front()->End->ID];
 
         bool cycle = false;
 
@@ -466,18 +436,14 @@ void Graph::MinimumSpanningTree_Prims()
 
 
 /*
-  ______                                __       __     __  __
- /      \                              |  \     |  \   |  \|  \
-|  $$$$$$\  ______   ______    ______  | $$____ | $$   | $$ \$$ ________
-| $$ __\$$ /      \ |      \  /      \ | $$    \| $$   | $$|  \|        \
-| $$|    \|  $$$$$$\ \$$$$$$\|  $$$$$$\| $$$$$$$\\$$\ /  $$| $$ \$$$$$$$$
-| $$ \$$$$| $$   \$$/      $$| $$  | $$| $$  | $$ \$$\  $$ | $$  /    $$
-| $$__| $$| $$     |  $$$$$$$| $$__/ $$| $$  | $$  \$$ $$  | $$ /  $$$$_
- \$$    $$| $$      \$$    $$| $$    $$| $$  | $$   \$$$   | $$|  $$    \
-  \$$$$$$  \$$       \$$$$$$$| $$$$$$$  \$$   \$$    \$     \$$ \$$$$$$$$
-                             | $$
-                             | $$
-                              \$$
+ 
+     ██████╗ ██████╗  █████╗ ██████╗ ██╗  ██╗██╗   ██╗██╗███████╗
+    ██╔════╝ ██╔══██╗██╔══██╗██╔══██╗██║  ██║██║   ██║██║╚══███╔╝
+    ██║  ███╗██████╔╝███████║██████╔╝███████║██║   ██║██║  ███╔╝ 
+    ██║   ██║██╔══██╗██╔══██║██╔═══╝ ██╔══██║╚██╗ ██╔╝██║ ███╔╝  
+    ╚██████╔╝██║  ██║██║  ██║██║     ██║  ██║ ╚████╔╝ ██║███████╗
+     ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝
+
 */
 
 void Graph::MakeGraphVizFile()
@@ -578,28 +544,20 @@ void Graph::MakeGraphVizFile()
 
 
 /*
- __       __             __                __
-|  \     /  \           |  \              |  \
-| $$\   /  $$  ______  _| $$_     ______   \$$ __    __
-| $$$\ /  $$$ |      \|   $$ \   /      \ |  \|  \  /  \
-| $$$$\  $$$$  \$$$$$$\\$$$$$$  |  $$$$$$\| $$ \$$\/  $$
-| $$\$$ $$ $$ /      $$ | $$ __ | $$   \$$| $$  >$$  $$
-| $$ \$$$| $$|  $$$$$$$ | $$|  \| $$      | $$ /  $$$$\
-| $$  \$ | $$ \$$    $$  \$$  $$| $$      | $$|  $$ \$$\
- \$$      \$$  \$$$$$$$   \$$$$  \$$       \$$ \$$   \$$
-
-  ______                                                    __
- /      \                                                  |  \
-|  $$$$$$\ __    __  ______ ____   ______ ____    ______  _| $$_     ______   __    __
-| $$___\$$|  \  |  \|      \    \ |      \    \  /      \|   $$ \   /      \ |  \  |  \
- \$$    \ | $$  | $$| $$$$$$\$$$$\| $$$$$$\$$$$\|  $$$$$$\\$$$$$$  |  $$$$$$\| $$  | $$
- _\$$$$$$\| $$  | $$| $$ | $$ | $$| $$ | $$ | $$| $$    $$ | $$ __ | $$   \$$| $$  | $$
-|  \__| $$| $$__/ $$| $$ | $$ | $$| $$ | $$ | $$| $$$$$$$$ | $$|  \| $$      | $$__/ $$
- \$$    $$ \$$    $$| $$ | $$ | $$| $$ | $$ | $$ \$$     \  \$$  $$| $$       \$$    $$
-  \$$$$$$  _\$$$$$$$ \$$  \$$  \$$ \$$  \$$  \$$  \$$$$$$$   \$$$$  \$$       _\$$$$$$$
-          |  \__| $$                                                         |  \__| $$
-           \$$    $$                                                          \$$    $$
-            \$$$$$$                                                            \$$$$$$
+    
+    ███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗                          
+    ████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝                          
+    ██╔████╔██║███████║   ██║   ██████╔╝██║ ╚███╔╝                           
+    ██║╚██╔╝██║██╔══██║   ██║   ██╔══██╗██║ ██╔██╗                           
+    ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗                          
+    ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝                          
+                                                                            
+    ███████╗██╗   ██╗███╗   ███╗███╗   ███╗███████╗████████╗██████╗ ██╗   ██╗
+    ██╔════╝╚██╗ ██╔╝████╗ ████║████╗ ████║██╔════╝╚══██╔══╝██╔══██╗╚██╗ ██╔╝
+    ███████╗ ╚████╔╝ ██╔████╔██║██╔████╔██║█████╗     ██║   ██████╔╝ ╚████╔╝ 
+    ╚════██║  ╚██╔╝  ██║╚██╔╝██║██║╚██╔╝██║██╔══╝     ██║   ██╔══██╗  ╚██╔╝  
+    ███████║   ██║   ██║ ╚═╝ ██║██║ ╚═╝ ██║███████╗   ██║   ██║  ██║   ██║   
+    ╚══════╝   ╚═╝   ╚═╝     ╚═╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝   
 
     Public Method void: isSymmetric()
 
@@ -641,36 +599,28 @@ void Graph::isSymmetric()
     Symmetric = true;
 }
 
-
 /*
-  ______                        __
- /      \                      |  \
-|  $$$$$$\  ______    ______  _| $$_
-| $$___\$$ /      \  /      \|   $$ \
- \$$    \ |  $$$$$$\|  $$$$$$\\$$$$$$
- _\$$$$$$\| $$  | $$| $$   \$$ | $$ __
-|  \__| $$| $$__/ $$| $$       | $$|  \
- \$$    $$ \$$    $$| $$        \$$  $$
-  \$$$$$$   \$$$$$$  \$$         \$$$$
- __       __            __            __         __
-|  \  _  |  \          |  \          |  \       |  \
-| $$ / \ | $$  ______   \$$  ______  | $$____  _| $$_     _______
-| $$/  $\| $$ /      \ |  \ /      \ | $$    \|   $$ \   /       \
-| $$  $$$\ $$|  $$$$$$\| $$|  $$$$$$\| $$$$$$$\\$$$$$$  |  $$$$$$$
-| $$ $$\$$\$$| $$    $$| $$| $$  | $$| $$  | $$ | $$ __  \$$    \
-| $$$$  \$$$$| $$$$$$$$| $$| $$__| $$| $$  | $$ | $$|  \ _\$$$$$$\
-| $$$    \$$$ \$$     \| $$ \$$    $$| $$  | $$  \$$  $$|       $$
- \$$      \$$  \$$$$$$$ \$$ _\$$$$$$$ \$$   \$$   \$$$$  \$$$$$$$
-                           |  \__| $$
-                            \$$    $$
-                             \$$$$$$
-
+ 
+    ███████╗ ██████╗ ██████╗ ████████╗                     
+    ██╔════╝██╔═══██╗██╔══██╗╚══██╔══╝                     
+    ███████╗██║   ██║██████╔╝   ██║                        
+    ╚════██║██║   ██║██╔══██╗   ██║                        
+    ███████║╚██████╔╝██║  ██║   ██║                        
+    ╚══════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝                        
+                                                            
+    ██╗    ██╗███████╗██╗ ██████╗ ██╗  ██╗████████╗███████╗
+    ██║    ██║██╔════╝██║██╔════╝ ██║  ██║╚══██╔══╝██╔════╝
+    ██║ █╗ ██║█████╗  ██║██║  ███╗███████║   ██║   ███████╗
+    ██║███╗██║██╔══╝  ██║██║   ██║██╔══██║   ██║   ╚════██║
+    ╚███╔███╔╝███████╗██║╚██████╔╝██║  ██║   ██║   ███████║
+     ╚══╝╚══╝ ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝
 
     Utility Function that loops through our Map of vertices and sorts
     the edges in each Vertex's Adjacency matrix by its weight. This helps
     our priority queue by guaranteeing that the edges that are pushed to
     the queue are in order of smallest weight to largest weight.
 */
+
 void Graph::SortWeights()
 {
     for (auto it = Vertices.cbegin(); it != Vertices.cend(); it++)
@@ -704,26 +654,20 @@ void Graph::PrintMap()
 
 
 /*
- __                                 __
-|  \                               |  \
-| $$       ______    ______    ____| $$
-| $$      /      \  |      \  /      $$
-| $$     |  $$$$$$\  \$$$$$$\|  $$$$$$$
-| $$     | $$  | $$ /      $$| $$  | $$
-| $$_____| $$__/ $$|  $$$$$$$| $$__| $$
-| $$     \\$$    $$ \$$    $$ \$$    $$
- \$$$$$$$$ \$$$$$$   \$$$$$$$  \$$$$$$$
-
- __       __             __                __
-|  \     /  \           |  \              |  \
-| $$\   /  $$  ______  _| $$_     ______   \$$ __    __
-| $$$\ /  $$$ |      \|   $$ \   /      \ |  \|  \  /  \
-| $$$$\  $$$$  \$$$$$$\\$$$$$$  |  $$$$$$\| $$ \$$\/  $$
-| $$\$$ $$ $$ /      $$ | $$ __ | $$   \$$| $$  >$$  $$
-| $$ \$$$| $$|  $$$$$$$ | $$|  \| $$      | $$ /  $$$$\
-| $$  \$ | $$ \$$    $$  \$$  $$| $$      | $$|  $$ \$$\
- \$$      \$$  \$$$$$$$   \$$$$  \$$       \$$ \$$   \$$
-
+ 
+    ██╗      ██████╗  █████╗ ██████╗               
+    ██║     ██╔═══██╗██╔══██╗██╔══██╗              
+    ██║     ██║   ██║███████║██║  ██║              
+    ██║     ██║   ██║██╔══██║██║  ██║              
+    ███████╗╚██████╔╝██║  ██║██████╔╝              
+    ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝               
+                                                    
+    ███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗
+    ████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝
+    ██╔████╔██║███████║   ██║   ██████╔╝██║ ╚███╔╝ 
+    ██║╚██╔╝██║██╔══██║   ██║   ██╔══██╗██║ ██╔██╗ 
+    ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗
+    ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
 
     Public Method void: LoadMatrix()
 
@@ -776,7 +720,7 @@ void Graph::LoadMatrix(ifstream& input)
     */
     for (int i = 0; i < AM.size(); i++)
     {
-        Graph_Node* Temp = new Graph_Node(i);
+        shared_ptr<Graph_Node> Temp(new Graph_Node(i));
         Vertices[Temp->ID] = Temp;
         AM[i].resize(size);
     }
@@ -821,10 +765,10 @@ void Graph::LoadMatrix(ifstream& input)
                     Since they are pointers and not actual objects, this is more memory efficient
                     that creating copies of each object.
                 */
-                Graph_Node* Start = Vertices[U];
-                Graph_Node* End = Vertices[V];
+                auto Start = Vertices[U];
+                auto End = Vertices[V];
 
-                Edge* E = new Edge(Start, End, Weight);
+                shared_ptr<Edge> E(new Edge(Start, End, Weight));
 
                 // Making a char pair typedeffed as an edge pair and using that as the map key
                 auto P1 = make_pair(Start->ID, End->ID);
@@ -857,15 +801,21 @@ void Graph::PrintMatrix()
 
 
 /*
- __       __            __
-|  \     /  \          |  \
-| $$\   /  $$  ______   \$$ _______
-| $$$\ /  $$$ |      \ |  \|       \
-| $$$$\  $$$$  \$$$$$$\| $$| $$$$$$$\
-| $$\$$ $$ $$ /      $$| $$| $$  | $$
-| $$ \$$$| $$|  $$$$$$$| $$| $$  | $$
-| $$  \$ | $$ \$$    $$| $$| $$  | $$
- \$$      \$$  \$$$$$$$ \$$ \$$   \$$
+ 
+    ███╗   ███╗ █████╗ ██╗███╗   ██╗         
+    ████╗ ████║██╔══██╗██║████╗  ██║         
+    ██╔████╔██║███████║██║██╔██╗ ██║         
+    ██║╚██╔╝██║██╔══██║██║██║╚██╗██║         
+    ██║ ╚═╝ ██║██║  ██║██║██║ ╚████║         
+    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝         
+                                            
+    ██████╗ ██╗      ██████╗  ██████╗██╗  ██╗
+    ██╔══██╗██║     ██╔═══██╗██╔════╝██║ ██╔╝
+    ██████╔╝██║     ██║   ██║██║     █████╔╝ 
+    ██╔══██╗██║     ██║   ██║██║     ██╔═██╗ 
+    ██████╔╝███████╗╚██████╔╝╚██████╗██║  ██╗
+    ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝
+    
 */
 
 int main()
