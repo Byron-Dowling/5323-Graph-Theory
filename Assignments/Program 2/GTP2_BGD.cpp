@@ -1,5 +1,5 @@
 /*
-    Name: 		Byron Dowling
+   	Name: 		Byron Dowling
 	Course:		5323 Graph Theory
 	Semester:	Summer 2, 2022	
 	Assignment:	Program 2 - Minimum Spanning Tree - Prim's Algorithm
