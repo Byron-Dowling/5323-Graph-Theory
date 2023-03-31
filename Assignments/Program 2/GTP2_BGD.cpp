@@ -21,9 +21,6 @@
         receive from the adjacency matrix in the event that it may be useful at a later time and
         since we're using object pointers, it is more memory efficient than creating copies of
         each object.
-
-
-        ***Project is modified to use Smart Pointers i.e shared_ptr***
 */
 
 #include<iostream>
